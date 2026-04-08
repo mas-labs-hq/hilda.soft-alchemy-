@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Hilda Nduta Nyawira — Brand Partnership Portfolio 2025</title>
     
     <!-- Favicon & Icons – linked from /icons/ folder (exactly as requested) -->
@@ -36,9 +36,7 @@
             --border: #D4CFC4;
             --border-light: #E8E4DC;
             --white: #FFFFFF;
-            --page-w: 794px;
-            --page-h: 1123px;
-            --margin: 60px;
+            --margin: clamp(20px, 6vw, 60px);
         }
 
         @page {
@@ -54,15 +52,18 @@
             background: #E0DDD6;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
+            overflow-x: hidden;
         }
 
+        /* Responsive pages – fit mobile screens */
         .page {
-            width: var(--page-w);
-            min-height: var(--page-h);
+            width: 100%;
+            max-width: 794px;
+            min-height: auto;
             margin: 20px auto;
             background: var(--cream);
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
             page-break-after: always;
             box-shadow: 0 4px 24px rgba(0,0,0,0.12);
         }
@@ -79,8 +80,9 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 80px 70px;
+            padding: 80px 30px;
             position: relative;
+            min-height: 100vh;
         }
 
         .cover::before {
@@ -108,6 +110,7 @@
         .cover-leaf {
             position: absolute;
             opacity: 0.06;
+            display: none;
         }
 
         .cover-leaf svg {
@@ -142,7 +145,7 @@
 
         .cover-name {
             font-family: 'Playfair Display', serif;
-            font-size: 42px;
+            font-size: clamp(32px, 10vw, 42px);
             font-weight: 500;
             color: var(--cream);
             line-height: 1.2;
@@ -186,8 +189,8 @@
         .cover-tagline {
             position: absolute;
             bottom: 70px;
-            left: 70px;
-            right: 70px;
+            left: 30px;
+            right: 30px;
             font-size: 10.5px;
             font-weight: 300;
             color: rgba(255,255,255,0.35);
@@ -228,6 +231,8 @@
             margin-bottom: 36px;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-light);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .page-header-name {
@@ -246,10 +251,11 @@
         }
 
         .page-footer {
-            position: absolute;
-            bottom: 30px;
-            left: var(--margin);
-            right: var(--margin);
+            position: relative;
+            bottom: auto;
+            margin-top: 40px;
+            left: auto;
+            right: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -273,7 +279,7 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: clamp(22px, 6vw, 26px);
             font-weight: 500;
             color: var(--text-primary);
             line-height: 1.3;
@@ -283,18 +289,28 @@
         /* ========== ABOUT PAGE ========== */
         .about-grid {
             display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 44px;
+            grid-template-columns: 1fr;
+            gap: 30px;
             margin-bottom: 32px;
         }
 
+        @media (min-width: 600px) {
+            .about-grid {
+                grid-template-columns: 240px 1fr;
+                gap: 44px;
+            }
+        }
+
         .about-photo {
-            width: 240px;
-            height: 320px;
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            aspect-ratio: 240 / 320;
             background: var(--cream-dark);
             border-radius: 4px;
             overflow: hidden;
             position: relative;
+            margin: 0 auto;
         }
 
         .about-photo img {
@@ -364,7 +380,7 @@
 
         .platform-cards {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 14px;
             margin-bottom: 12px;
         }
@@ -427,8 +443,14 @@
 
         .audience-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 36px;
+        }
+
+        @media (min-width: 600px) {
+            .audience-section {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .audience-col-title {
@@ -446,6 +468,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            flex-wrap: wrap;
         }
 
         .stat-row-label {
@@ -462,6 +485,7 @@
             border-radius: 4px;
             overflow: hidden;
             margin: 0 10px;
+            min-width: 60px;
         }
 
         .stat-row-fill {
@@ -483,6 +507,7 @@
             align-items: center;
             gap: 20px;
             margin-bottom: 18px;
+            flex-wrap: wrap;
         }
 
         .donut {
@@ -547,9 +572,15 @@
         /* ========== CONTENT PILLARS PAGE ========== */
         .pillars-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 16px;
             margin-bottom: 36px;
+        }
+
+        @media (min-width: 500px) {
+            .pillars-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .pillar-card {
@@ -599,7 +630,7 @@
 
         .formats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 12px;
         }
 
@@ -641,6 +672,7 @@
             align-items: center;
             gap: 16px;
             margin-bottom: 16px;
+            flex-wrap: wrap;
         }
 
         .brand-logo {
@@ -716,7 +748,7 @@
 
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 10px;
         }
 
@@ -765,9 +797,15 @@
         /* ========== WHY ME + CONTACT PAGE ========== */
         .why-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 14px;
             margin-bottom: 36px;
+        }
+
+        @media (min-width: 500px) {
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .why-card {
@@ -802,7 +840,7 @@
         .contact-section {
             background: var(--green-deep);
             border-radius: 8px;
-            padding: 36px 40px;
+            padding: 36px 24px;
             color: var(--cream);
             position: relative;
             overflow: hidden;
@@ -838,11 +876,17 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 20px;
             margin-bottom: 24px;
             position: relative;
             z-index: 1;
+        }
+
+        @media (min-width: 450px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .contact-item-label {
@@ -862,6 +906,7 @@
 
         .contact-socials {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
             position: relative;
@@ -925,6 +970,7 @@
             .page {
                 margin: 0;
                 box-shadow: none;
+                page-break-after: always;
             }
         }
 
@@ -999,7 +1045,7 @@
         </div>
     </div>
 
-    <!-- ==================== PAGE 3: PLATFORMS & AUDIENCE ==================== -->
+    <!-- ==================== PAGE 3: PLATFORMS & AUDIENCE (YouTube removed) ==================== -->
     <div class="page interior">
         <div class="interior-accent-bar"></div>
         <div class="page-header">
@@ -1027,14 +1073,6 @@
                     <div class="platform-stat">866</div>
                     <div class="platform-stat-label">Followers</div>
                     <span class="platform-engagement">6.2% Eng.</span>
-                </div>
-                <div class="platform-card">
-                    <span class="platform-icon">▶️</span>
-                    <div class="platform-name">YouTube</div>
-                    <div class="platform-handle">Hilda Nduta</div>
-                    <div class="platform-stat">8.7K</div>
-                    <div class="platform-stat-label">Subscribers</div>
-                    <span class="platform-engagement">~12K/views</span>
                 </div>
                 <div class="platform-card">
                     <span class="platform-icon">✉️</span>
@@ -1197,10 +1235,6 @@
             <div class="format-card">
                 <div class="format-name">TikTok Videos</div>
                 <div class="format-detail">30–90 seconds. Reach-driven, algorithm-friendly, highly shareable. Best for awareness campaigns.</div>
-            </div>
-            <div class="format-card">
-                <div class="format-name">YouTube Reviews</div>
-                <div class="format-detail">5–12 minutes. In-depth product breakdowns, tutorials, long-form trust building. Highest conversion format.</div>
             </div>
             <div class="format-card">
                 <div class="format-name">Instagram Carousels</div>
